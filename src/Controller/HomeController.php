@@ -21,7 +21,6 @@ use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class HomeController extends AbstractController
 {
-<<<<<<< HEAD
     #[Route('/home', name: 'app_home')]
     public function index(
         AchatRepository $achatRepository, 
@@ -31,10 +30,7 @@ class HomeController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
 
-=======
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
->>>>>>> 9c43fc10adf136ce5c6487dff5db11d01a0ec247
+
     {
         $detailAchatRepository = $entityManager->getRepository(DetailAchat::class);
         $totalDesAchats = DetailAchat::getTotalDesAchats($detailAchatRepository);
