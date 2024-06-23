@@ -70,6 +70,13 @@ class ProduitController extends AbstractController
             5 // Number of elements per page
         );
 
+        // Check for low stock products
+        foreach ($pagination as $product) {
+            if ($product->quantite() < 5) {
+                $this->addFlash('low_stock', 'Stock faible pour le produit : ' . $product->getDesignation());
+            }
+        }
+
         return $this->render('produit/index.html.twig', [
             'pagination' => $pagination,
             'searchCriteria' => $searchCriteria, // Pass search criteria to Twig template for display
@@ -214,7 +221,7 @@ class ProduitController extends AbstractController
         $sheet->setCellValue('C1', 'Emplacement');
         $sheet->setCellValue('D1', 'Prix unitaire');
         $sheet->setCellValue('E1', 'Stock');
-        $sheet->setCellValue('G1', 'Categorie');
+        $sheet->setCellValue('F1', 'Categorie');
     
         // Écrivez les données dans la feuille de calcul
         $row = 1; // Start data from row 2 (after headers)
@@ -239,6 +246,7 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/generate-pdf/{id}', name: 'app_produit_generate_pdf', methods: ['GET'])]
+    #[ParamDecryptor(['id'])]
     public function generatePdf(Produit $produit, Request $request): Response
     {
         $html = $this->renderView('produit/facture.html.twig', [
@@ -246,7 +254,7 @@ class ProduitController extends AbstractController
         ]);
 
         $filename = sprintf('facture-%s.pdf', $produit->getId());
-        $pdfPath = $this->getParameter('kernel.project_dir') . '/public/pdf/' . $filename;
+        $pdfPath = $this->getParameter('kernel.project_dir') . '/public/pdf/produit/' . $filename;
 
         // Vérifier si le fichier existe déjà
         if (file_exists($pdfPath)) {

@@ -76,4 +76,29 @@ class ProduitRepository extends ServiceEntityRepository
             }
         }
     }
+
+    public function findByDateExpiration(\DateTimeInterface $dateSeuil): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.dateexp <= :dateSeuil')
+            ->setParameter('dateSeuil', $dateSeuil)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Finds products with stock quantity less than a given threshold.
+     *
+     * @param int $threshold The stock threshold to filter products by.
+     * @return Produit[] Returns an array of Produit objects.
+     */
+    public function findLowStockProducts(int $threshold): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.quantite() < :threshold')
+            ->setParameter('threshold', $threshold)
+            ->getQuery()
+            ->getResult();
+    }
+    
 }

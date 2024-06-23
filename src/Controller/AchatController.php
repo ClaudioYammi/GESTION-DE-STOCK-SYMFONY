@@ -41,7 +41,6 @@ class AchatController extends AbstractController
                         AchatRepository $produitRepository, 
                         PaginatorInterface $paginator): Response
     {
-        
         // filtrage ------------------------------------------------------------------------------------------------
         $sort = $request->query->get('sort'); // Get sort parameter
         $order = $request->query->get('order'); // Get order parameter
@@ -76,6 +75,7 @@ class AchatController extends AbstractController
             'order' => $order,
             'sort' => $sort,
         ]);
+
     }
 
     #[Route('/new', name: 'app_achat_new', methods: ['GET', 'POST'])]
@@ -118,7 +118,6 @@ class AchatController extends AbstractController
         
                     $selectedProducts[] = $produitId;
                     $produit = $entityManager->getRepository(Produit::class)->find($produitId);
-
 
                     if ($produit) {
                         $detail = new DetailAchat();

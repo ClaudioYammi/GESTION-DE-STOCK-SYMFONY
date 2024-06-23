@@ -174,10 +174,10 @@ class EmplacementController extends AbstractController
     
         // Créez un écrivain et écrivez la feuille de calcul dans un fichier temporaire
         $writer = new Xlsx($spreadsheet);
-        $temp_file = tempnam(sys_get_temp_dir(), 'achats');
+        $temp_file = tempnam(sys_get_temp_dir(), 'emplacements');
         $writer->save($temp_file);
     
         // Retournez le fichier en tant que téléchargement
-        return $this->file($temp_file, 'achats.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
+        return $this->file($temp_file, 'emplacements.xlsx', ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

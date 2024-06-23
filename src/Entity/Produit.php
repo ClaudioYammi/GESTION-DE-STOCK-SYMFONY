@@ -311,7 +311,6 @@ class Produit
 
     }
 
-    
     public function getQuantiteAchat(): int //alaina ny qtt novidiny rehetra
     {
       

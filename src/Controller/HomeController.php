@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\DetailAchat;
+use App\Entity\Produit;
 use App\Entity\DetailVente;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ class HomeController extends AbstractController
         CategorieRepository $categoryRepository, 
         ProduitRepository $produitRepository, 
         VenteRepository $venteRepository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response
 
 
@@ -42,6 +43,14 @@ class HomeController extends AbstractController
         $venteCount = $venteRepository->count([]);
         $categorieCount = $categoryRepository->count([]);
         $ProduitCount = $produitRepository->count([]);
+        $produits = $produitRepository->findAll();
+        
+        // Check for low stock products
+        foreach ($produits as $product) {
+            if ($product->quantite() < 5) {
+                $this->addFlash('low_stock', 'Stock faible pour le produit : ' . $product->getDesignation());
+            }
+        }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

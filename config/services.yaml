@@ -6,6 +6,7 @@
 parameters:
 
 services:
+
     # Configuration par défaut pour les services dans ce fichier
     _defaults:
         autowire: true       # Injection automatique des dépendances dans vos services.
@@ -23,9 +24,14 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\EventListener\ExpiringProductListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
     # Déclaration de l'écouteur d'événements Redirect404ToHomePageListener
     App\EventListener\Redirect404ToHomePageListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
+
+    
 
     
