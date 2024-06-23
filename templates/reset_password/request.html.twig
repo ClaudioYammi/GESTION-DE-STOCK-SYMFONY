@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block login %}
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block">
+                                <img src="{{ asset('imgauth/logologin.png') }}" alt="Mon image" style="width: 90%;">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">Mot de passe oublier ?</h1>
+                                        <p class="mb-4">Nous comprenons, ces choses arrivent. Entrez simplement votre 
+                                        adresse e-mail ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe!</p>
+                                    </div>
+                                    {{ form_start(requestForm) }}
+                                    <form class="user">
+                                        <div class="form-group">
+                                             {{ form_row(requestForm.email) }}
+                                        <button class="btn btn-primary btn-user btn-block mt-4">
+                                            Réinitialiser
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ path('app_login') }}">Connexion via un compte existant ?</a>
+                                    </div>
+                                    {{ form_end(requestForm) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

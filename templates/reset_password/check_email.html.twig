@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialiser votre mot de passe{% endblock %}
+
+{% block login %}
+{% for flash_error in app.flashes('reset_password_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+<div class="container d-flex flex-column align-items-center justify-content-center" style="height: 80vh;">
+<img src="{{ asset('imgauth/logo.png') }}" alt="Mon image" class="mb-4" style="max-width: 200px;">
+<div class="card shadow-lg border-0 w-75">
+<div class="card-body p-5">
+<div class="text-center mb-4">
+<h1 class="h4 text-gray-900 mb-2">Réinitialiser votre mot de passe</h1>
+</div>
+<p class="text-center">
+Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+</p>
+<p class="text-center">
+Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">essayez à nouveau</a>.
+</p>
+</div>
+</div>
+</div>
+{% endblock %}

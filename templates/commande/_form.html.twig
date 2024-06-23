@@ -1,0 +1,75 @@
+{{ form_start(form) }}
+    <div class="row  m-3">
+        <div class="col-md-3">
+            {{ form_label(form.datecommande) }}
+            {{ form_widget(form.datecommande) }}
+            {{ form_errors(form.datecommande) }}
+        </div>
+        <div class="col-md-4">
+            <label for="">Ville</label>
+            {{ form_widget(form.idVille) }}
+            {{ form_errors(form.idVille) }}
+        </div>
+        <div class="col-md-4">
+            <label for="">Client</label>
+            {{ form_widget(form.idClient) }}
+            {{ form_errors(form.idClient) }}
+        </div>
+    </div>
+    <div class="row  m-3">
+        <div class="col-md-4 mt-2">
+            <label for="">Commande effectuer ou non effectuer</label>
+            {{ form_widget(form.etatcommande) }}
+            {{ form_errors(form.etatcommande) }}
+            </button>
+        </div>
+    </div>
+    <div class="row m-4">
+        <table class="col-9 ">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantite</th>
+                    <th>Prix Unitaire</th>
+                    <th>Act</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+        <div class="col-3">
+        <div class="row ">
+            <div class="col-md-5">
+                <label for="form_tva">TVA</label>
+            <div class="input-group "> 
+                {{ form_widget(form.Tva) }}
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-5">
+                <label for="form_remise">Remise</label>
+                <div class="input-group ">
+                    {{ form_widget(form.Remise) }}
+                    <div class="input-group-append">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <label>Total (Ariary)</label>
+            <div class="row" id="prixtotal">
+                <h4><span id="total-value">0</span></h4>
+            </div>
+        <div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button id="add" class="btn btn-primary btn-sm mr-1" >Ajouter</button>
+            <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+<script src="{{ asset('js/commande.js') }}"></script>

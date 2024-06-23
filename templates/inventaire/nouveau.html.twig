@@ -1,0 +1,59 @@
+{% extends 'content.html.twig' %}
+
+{% block title %}Nouveau inventaire{% endblock %}
+{% block widget %}
+    <a href="{{ path('app_inventaire_index') }}" class="btn btn-dark btn-sm"><i class="fas fa-fw fa-arrow-left mr-2"></i>Retour</a>
+{% endblock %}
+
+{% block widget_droite %}
+
+{% endblock %}
+
+{% block table %}
+
+<div class="row m-3">
+<form id="inventaire-form" method="post" action="/inventaire/new" class="row g-3">
+    <div class="col-md-12 mt-3">
+        <button type="submit" class="btn btn-primary" id="enregistrer-btn">
+            <i class="fas fa-save"></i> Enregistrer
+        </button>
+        <button type="button" class="btn btn-success" id="nouvelle-ligne-btn">
+            <i class="fas fa-plus-circle"></i> Nouvelle ligne
+        </button>
+        <button type="button" class="btn btn-danger" id="supprimer-ligne-btn">
+            <i class="fas fa-trash-alt"></i> Supprimer la ligne
+        </button>
+    </div>
+    <div id="form-rows">
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label for="reference">Référence</label>
+                <select class="form-select" name="reference[]" required>
+                    <option value="">Sélectionnez un produit</option>
+                    {% for produit in produits %}
+                        <option value="{{ produit.id }}">{{ produit.designation }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="update_at">Date de mise à jour</label>
+                <input type="datetime-local" class="form-control" value="{{ updateAt }}" name="update_at[]" required>
+            </div>
+            <div class="col-md-2">
+                <label for="stockinventaire">Stock inventaire</label>
+                <input type="number" class="form-control" name="stockinventaire[]" required>
+            </div>
+            <div class="col-md-2">
+                <label for="stockutiliser">Stock utilisé</label>
+                <input type="number" class="form-control" name="stockutiliser[]" required>
+            </div>
+            <div class="col-md-2">
+                <label for="note">Note</label>
+                <input type="text" class="form-control" name="note[]">
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{{ asset('js/inventaire.js') }}"></script>
+
+{% endblock %}

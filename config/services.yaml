@@ -1,0 +1,31 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    # Configuration par défaut pour les services dans ce fichier
+    _defaults:
+        autowire: true       # Injection automatique des dépendances dans vos services.
+        autoconfigure: true  # Enregistrement automatique de vos services en tant que commandes, abonnés d'événements, etc.
+
+    # Déclaration des services spécifiques
+    App\Service\NumberToWordsConverter:
+        public: true
+
+    # Configuration de la recherche des services dans le répertoire src/
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Déclaration de l'écouteur d'événements Redirect404ToHomePageListener
+    App\EventListener\Redirect404ToHomePageListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    
