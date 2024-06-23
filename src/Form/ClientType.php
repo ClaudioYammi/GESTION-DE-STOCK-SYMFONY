@@ -52,7 +52,7 @@ class ClientType extends AbstractType
                 'constraints' => [
                 new NotBlank(['message' => 'Veuillez saisir un numéro de téléphone.']),
                 new Length([
-                        'min' => 10,
+                        'min' => 9,
                         'max' => 15,
                         'minMessage' => 'Le numéro de téléphone doit contenir au moins {{ limit }} chiffres.',
                         'maxMessage' => 'Le numéro de téléphone ne peut pas dépasser {{ limit }} chiffres.'
