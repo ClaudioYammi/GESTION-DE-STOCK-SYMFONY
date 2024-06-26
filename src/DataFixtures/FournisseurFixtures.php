@@ -7,9 +7,15 @@ use App\Entity\Fournisseur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class FournisseurFixtures extends Fixture
+class FournisseurFixtures extends Fixture implements FixtureGroupInterface
 {
+    public static function getGroups(): array
+    {
+        return ['fournisseur_group'];
+    }
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR'); // Utilisez le générateur en français pour plus de précision
