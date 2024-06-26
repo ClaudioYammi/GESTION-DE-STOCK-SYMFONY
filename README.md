@@ -12,3 +12,32 @@
 
 Symfony Project stock management 
 (Created by Claudio Yammi)
+Install requirement 
+```
+- composer install
+- composer update
+```
+Migrate database
+```
+- symfony console make:migration
+- symfony console doctrine:migrations:migrate
+```
+
+To Run Server
+```
+- symfony serve -d
+```
+
+To Stop Server
+```
+- symfony server:stop
+```
+
+Add Account administrator (ratovondriakakygo@gmail.com)
+```
+- composer require --dev doctrine/doctrine-fixtures-bundle
+- symfony console doctrine:fixtures:load
+```
+
+
+
