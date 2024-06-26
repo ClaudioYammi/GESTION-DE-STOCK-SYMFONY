@@ -231,7 +231,7 @@ class ProduitController extends AbstractController
             $sheet->setCellValue('C' . ($row+1), $produit->getEmplacement()->getNom());
             $sheet->setCellValue('D' . ($row+1), $produit->getPrixunitaire());
             $sheet->setCellValue('E' . ($row+1), $produit->getQuantiteAchat()-$produit->getQuantiteVente());
-            $sheet->setCellValue('F' . ($row+1), $produit->getidCategorie());
+            $sheet->setCellValue('F' . ($row+1), $produit->getidCategorie()->getNom());
             $row++;
             
         }
