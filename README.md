@@ -12,11 +12,11 @@
 
 Symfony Project stock management 
 (Created by Claudio Yammi)
-
+```
 Install requirement 
 - composer install
 - composer update
-
+```
 Migrate database
 - symfony console make:migration
 - symfony console doctrine:migrations:migrate
