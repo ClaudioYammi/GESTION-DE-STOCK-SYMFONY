@@ -2,85 +2,95 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <style>
     body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #ffffff; /* Blanc */
-    color: #333333; /* Gris foncé */
-}
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #ffffff; /* Blanc */
+        color: #333333; /* Gris foncé */
+    }
 
-h1 {
-    text-align: right;
-    color: #333333; /* Gris foncé */
-    margin-bottom: 20px;
-}
+    h1 {
+        text-align: right;
+        color: #333333; /* Gris foncé */
+        margin-bottom: 20px;
+    }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background-color: #ffffff; /* Blanc */
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+    }
 
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #cccccc; /* Gris clair */
-}
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #000000; /* Noir pour les traits */
+    }
 
-th {
-    background-color: #cccccc; /* Gris clair */
-    color: #333333; /* Gris foncé */
-}
+    th {
+        font-weight: bold;
+        border-bottom: 2px solid #000000; /* Bordure plus épaisse pour les titres */
+        color: #000000; /* Noir */
+    }
+    .total {
+        font-weight: bold;
+        text-align: right;
+        background-color: #ffff00; /* Jaune */
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff; /* Blanc */
+    }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2; /* Gris très clair */
-}
+    .total {
+        font-weight: bold;
+        text-align: right;
+    }
 
-.total {
-    font-weight: bold;
-    text-align: right;
-}
+    .summary-table th, .summary-table td {
+        border-bottom: none;
+    }
 
-.summary-table th, .summary-table td {
-    border-bottom: none;
-}
+    .summary-table th {
+        text-align: right;
+    }
 
-.summary-table th {
-    text-align: right;
-}
+    .summary-table td {
+        text-align: right;
+        font-weight: bold;
+    }
 
-.summary-table td {
-    text-align: right;
-    font-weight: bold;
-}
-
- footer {
+    footer {
         background-color: #f2f2f2; /* Gris très clair */
         color: #333333; /* Gris foncé */
         text-align: center;
         padding: 10px 0;
-        margin-bottom: 20px;
+        margin-top: 20px;
     }
+
     header {
         color: #333333; /* Gris foncé */
         padding: 10px 20px; /* Ajout de rembourrage pour l'espace autour du contenu */
         margin-bottom: 20px;
         display: flex; /* Utilisation de flexbox pour le positionnement */
         justify-content: space-between; /* Alignement des éléments vers les extrémités */
+        align-items: center; /* Alignement vertical au centre */
     }
 
-    h1 {
-    margin-left: auto; /* Place le titre à droite du header */
-}
+    .header-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-p {
-    margin: 0; /* Suppression de la marge par défaut pour éviter les espaces supplémentaires */
-}
+    .header-right {
+        text-align: right;
+    }
 
+    p {
+        margin: 0; /* Suppression de la marge par défaut pour éviter les espaces supplémentaires */
+    }
 </style>
 </head>
 <body>
