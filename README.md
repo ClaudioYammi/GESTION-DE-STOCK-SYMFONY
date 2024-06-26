@@ -12,6 +12,7 @@
 
 Symfony Project stock management 
 (Created by Claudio Yammi)
+
 Install requirement 
 ```
 - composer install
