@@ -15,29 +15,29 @@ Symfony Project stock management
 
 Install requirement 
 ```
-- composer install
-- composer update
+composer install
+composer update
 ```
 Migrate database
 ```
-- symfony console make:migration
-- symfony console doctrine:migrations:migrate
+symfony console make:migration
+symfony console doctrine:migrations:migrate
 ```
 
 To Run Server
 ```
-- symfony serve -d
+symfony serve -d
 ```
 
 To Stop Server
 ```
-- symfony server:stop
+symfony server:stop
 ```
 
 Add Account administrator (ratovondriakakygo@gmail.com) (password: administrateur2024)
 ```
-- composer require --dev doctrine/doctrine-fixtures-bundle
-- symfony console doctrine:fixtures:load
+composer require --dev doctrine/doctrine-fixtures-bundle
+symfony console doctrine:fixtures:load
 ```
 
 
