@@ -6,16 +6,47 @@ use App\Entity\Fournisseur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 
 class FournisseurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('email')
+            ->add('nom', null, [
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez saisir un nom.'])
+                ],
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du Client',
+                ],
+            ])
+            ->add('email', null, [
+                'constraints' => [
+                    new NotBlank(['message' => 'Veuillez saisir une adresse e-mail.']),
+                    new Email(['message' => 'Veuillez saisir une adresse e-mail valide.'])
+                ],
+                'attr' => [
+                    'placeholder' => 'Entrez votre email',
+                ],
+            ])
             ->add('adresse')
-            ->add('telephone')
+            ->add('telephone', null, [
+                'constraints' => [
+                new NotBlank(['message' => 'Veuillez saisir un numéro de téléphone.']),
+                new Length([
+                        'min' => 9,
+                        'max' => 15,
+                        'minMessage' => 'Le numéro de téléphone doit contenir au moins {{ limit }} chiffres.',
+                        'maxMessage' => 'Le numéro de téléphone ne peut pas dépasser {{ limit }} chiffres.'
+                    ])
+                ],
+                'attr' => [
+                    'placeholder' => 'Entrez votre numéro de téléphone ',
+                ],
+            ]);
         ;
     }
 

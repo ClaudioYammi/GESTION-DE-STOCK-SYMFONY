@@ -8,7 +8,6 @@
     <table class="table  table-hover">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Email</th>
                 <th>Adresse</th>
@@ -19,7 +18,6 @@
         <tbody>
         {% for fournisseur in pagination %}
             <tr>
-                <td>{{ fournisseur.id }}</td>
                 <td>{{ fournisseur.nom }}</td>
                 <td>{{ fournisseur.email }}</td>
                 <td>{{ fournisseur.adresse }}</td>

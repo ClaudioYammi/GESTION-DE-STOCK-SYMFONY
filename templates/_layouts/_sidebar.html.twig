@@ -11,7 +11,8 @@
     <hr class="sidebar-divider my-0">
     <li class="nav-item ">
         <a class="nav-link" >
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fas fa-check-circle"></i>
+
             <span>Status : 
                 {% if is_granted('ROLE_ADMIN') %}
                     <button class="btn btn-sm btn-primary position-relative"><strong>Admin</strong>
@@ -49,12 +50,13 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item ">
-        <a class="nav-link" href="{{ path('app_home')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Tableau de bord</span>
-        </a>
-    </li>
+<li class="nav-item {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">
+    <a class="nav-link" href="{{ path('app_home') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Tableau de bord</span>
+    </a>
+</li>
+
 
     {% if is_granted('ROLE_ADMIN') %}
         <li class="nav-item">
@@ -63,14 +65,6 @@
                 <span>Utilisateur</span>
             </a>
         </li>
-        <li class="nav-item">
-            {# <a class="nav-link" href="{{ path('app_fournisseur_index')}}"> #}
-            <a type="button" class="nav-link" href="#" >
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Profil</span>
-            </a>
-        </li>
-        
     {% endif %}
     <hr class="sidebar-divider">
 <li class="nav-item {% if app.request.attributes.get('_route') in ['app_produit_index', 'app_produit_new'] %}active{% endif %}">
@@ -85,77 +79,93 @@
         </div>
     </div>
 </li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_achat_index', 'app_achat_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Achat</span>
-    </a>
-    <div id="collapseTwo" class="collapse {% if app.request.attributes.get('_route') in ['app_achat_index', 'app_achat_new'] %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_achat_index' %}active{% endif %}" href="{{ path('app_achat_index') }}">Liste des Achat</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_achat_new' %}active{% endif %}" href="{{ path('app_achat_new') }}">Ajouter une Achat</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_vente_index', 'app_vente_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-        <i class="nav-icon fa fa-shopping-cart"></i>
-        <span>Vente</span>
-    </a>
-    <div id="collapsePages" class="collapse {% if app.request.attributes.get('_route') in ['app_vente_index', 'app_vente_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_vente_index' %}active{% endif %}" href="{{ path('app_vente_index') }}">Liste des ventes</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_vente_new' %}active{% endif %}" href="{{ path('app_vente_new') }}">Ajouter une vente</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_inventaire_index', 'app_inventaire_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventaires" aria-expanded="true" aria-controls="collapseInventaires">
-        <i class="fas fa-clipboard-list"></i>
-        <span>Inventaire</span>
-    </a>
-    <div id="collapseInventaires" class="collapse {% if app.request.attributes.get('_route') in ['app_inventaire_index', 'app_inventaire_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_inventaire_index' %}active{% endif %}" href="{{ path('app_inventaire_index') }}">Liste des inventaires</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_inventaire_new' %}active{% endif %}" href="{{ path('app_inventaire_new') }}">Ajouter une inventaire</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_client_index', 'app_client_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true" aria-controls="collapseClients">
-        <i class="nav-icon fa fa-user"></i>
-        <span>Clients</span>
-    </a>
-    <div id="collapseClients" class="collapse {% if app.request.attributes.get('_route') in ['app_client_index', 'app_client_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_client_index' %}active{% endif %}" href="{{ path('app_client_index') }}">Liste des clients</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_client_new' %}active{% endif %}" href="{{ path('app_client_new') }}">Ajouter un client</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_commande_index', 'app_commande_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommandes" aria-expanded="true" aria-controls="collapsePages">
-        <i class="nav-icon fa fa-shopping-cart"></i>
-        <span>Commandes</span>
-    </a>
-    <div id="collapseCommandes" class="collapse {% if app.request.attributes.get('_route') in ['app_commande_index', 'app_commande_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_commande_index' %}active{% endif %}" href="{{ path('app_commande_index') }}">Liste des commandes</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_commande_new' %}active{% endif %}" href="{{ path('app_commande_new') }}">Ajouter une commande</a>
-        </div>
-    </div>
-</li>
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_ville_index', 'app_emplacement_index', 'app_categorie_index'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVilles" aria-expanded="true" aria-controls="collapsePages">
-       <i class="fas fa-plus icon-plus"></i>
-    </a>
-    <div id="collapseVilles" class="collapse {% if app.request.attributes.get('_route') in ['app_ville_index', 'app_emplacement_index', 'app_categorie_index'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_ville_index' %}active{% endif %}" href="{{ path('app_ville_index') }}">Liste des Villes</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_emplacement_index' %}active{% endif %}" href="{{ path('app_emplacement_index') }}">Liste des Emplacements</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_categorie_index' %}active{% endif %}" href="{{ path('app_categorie_index') }}">Liste des Categorie</a>
-        </div>
-    </div>
-</li>
+    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_achat_index', 'app_achat_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Achat</span>
+            </a>
+            <div id="collapseTwo" class="collapse {% if app.request.attributes.get('_route') in ['app_achat_index', 'app_achat_new'] %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_achat_index' %}active{% endif %}" href="{{ path('app_achat_index') }}">Liste des Achat</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_achat_new' %}active{% endif %}" href="{{ path('app_achat_new') }}">Ajouter une Achat</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_vente_index', 'app_vente_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="nav-icon fa fa-shopping-cart"></i>
+                <span>Vente</span>
+            </a>
+            <div id="collapsePages" class="collapse {% if app.request.attributes.get('_route') in ['app_vente_index', 'app_vente_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_vente_index' %}active{% endif %}" href="{{ path('app_vente_index') }}">Liste des ventes</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_vente_new' %}active{% endif %}" href="{{ path('app_vente_new') }}">Ajouter une vente</a>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN','ROLE_STOCK') %}
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_inventaire_index', 'app_inventaire_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventaires" aria-expanded="true" aria-controls="collapseInventaires">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Inventaire</span>
+            </a>
+            <div id="collapseInventaires" class="collapse {% if app.request.attributes.get('_route') in ['app_inventaire_index', 'app_inventaire_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_inventaire_index' %}active{% endif %}" href="{{ path('app_inventaire_index') }}">Liste des inventaires</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_inventaire_new' %}active{% endif %}" href="{{ path('app_inventaire_new') }}">Ajouter une inventaire</a>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+
     
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_client_index', 'app_client_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients" aria-expanded="true" aria-controls="collapseClients">
+                <i class="nav-icon fa fa-user"></i>
+                <span>Clients</span>
+            </a>
+            <div id="collapseClients" class="collapse {% if app.request.attributes.get('_route') in ['app_client_index', 'app_client_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_client_index' %}active{% endif %}" href="{{ path('app_client_index') }}">Liste des clients</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_client_new' %}active{% endif %}" href="{{ path('app_client_new') }}">Ajouter un client</a>
+                </div>
+            </div>
+        </li>
+    
+
+    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_commande_index', 'app_commande_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommandes" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-shipping-fast"></i>
+
+                <span>Commandes</span>
+            </a>
+            <div id="collapseCommandes" class="collapse {% if app.request.attributes.get('_route') in ['app_commande_index', 'app_commande_new'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_commande_index' %}active{% endif %}" href="{{ path('app_commande_index') }}">Liste des commandes</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_commande_new' %}active{% endif %}" href="{{ path('app_commande_new') }}">Ajouter une commande</a>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_ville_index', 'app_emplacement_index', 'app_categorie_index'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVilles" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-plus icon-plus"></i>
+            </a>
+            <div id="collapseVilles" class="collapse {% if app.request.attributes.get('_route') in ['app_ville_index', 'app_emplacement_index', 'app_categorie_index'] %}show{% endif %}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_ville_index' %}active{% endif %}" href="{{ path('app_ville_index') }}">Liste des Villes</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_emplacement_index' %}active{% endif %}" href="{{ path('app_emplacement_index') }}">Liste des Emplacements</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_categorie_index' %}active{% endif %}" href="{{ path('app_categorie_index') }}">Liste des Categorie</a>
+                    <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_fournisseur_index' %}active{% endif %}" href="{{ path('app_fournisseur_index') }}">Liste des Fournisseur</a>
+                </div>
+            </div>
+        </li>
+    {% endif %}
+
 </ul>

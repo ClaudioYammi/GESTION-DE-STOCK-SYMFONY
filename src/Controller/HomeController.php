@@ -109,6 +109,13 @@ class HomeController extends AbstractController
         return $totals;
     }
 
-    
+    #[Route('/commandes/statistiques', name: 'commandes_statistiques')]
+    public function commandesStatistiques(CommandeRepository $commandeRepository): JsonResponse
+    {
+        $enCours = $commandeRepository->count(['etatcommande' => false]);
+        $effectuer = $commandeRepository->count(['etatcommande' => true]);
+
+        return new JsonResponse(['enCours' => $enCours, 'effectuer' => $effectuer]);
+    }
     
 }

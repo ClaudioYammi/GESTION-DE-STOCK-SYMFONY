@@ -231,29 +231,35 @@
                     </div>
                 <canvas id="myChartCommande" style="width:100%;max-width:600px" class="mx-4 my-2"></canvas>
 
-                <script>
-                var xValues = ["en cours", "effectuer"];
-                var yValues = [55, 49, 44, 24, 15];
-                var barColors = ["red", "green"];
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    fetch('/commandes/statistiques')
+        .then(response => response.json())
+        .then(data => {
+            var xValues = ["en cours", "effectuer"];
+            var yValues = [data.enCours, data.effectuer];
+            var barColors = ["red", "green"];
 
-                new Chart("myChartCommande", {
+            new Chart("myChartCommande", {
                 type: "bar",
                 data: {
                     labels: xValues,
                     datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
+                        backgroundColor: barColors,
+                        data: yValues
                     }]
                 },
                 options: {
-                    legend: {display: false},
+                    legend: { display: false },
                     title: {
-                    display: true,
-                    text: "Commande en cours et effectuer"
+                        display: true,
+                        text: "Commandes en cours et effectuées"
                     }
                 }
-                });
-                </script>
+            });
+        });
+});
+</script>
                 </div>
 
             </div>
