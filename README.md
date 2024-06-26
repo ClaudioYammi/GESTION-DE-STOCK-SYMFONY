@@ -33,7 +33,7 @@ To Stop Server
 - symfony server:stop
 ```
 
-Add Account administrator (ratovondriakakygo@gmail.com)
+Add Account administrator (ratovondriakakygo@gmail.com) (password: administrateur2024)
 ```
 - composer require --dev doctrine/doctrine-fixtures-bundle
 - symfony console doctrine:fixtures:load
