@@ -62,6 +62,7 @@
                 </th>
                 <th>A payer</th>
                 <th>Etatcommande</th>
+                <th>Valider/Annuler</th>
                 <th>Act</th>
             </tr>
         </thead>
@@ -81,10 +82,15 @@
                 <td>{{ commande.idClient.nom }}</td>
                 <td>{{ commande.total()|number_format(2, ',', ' ') }} Ar</td>
                 <td>{% if commande.etatcommande == 'Yes' %}
-                        <button class="btn btn-success btn-sm">{{ 'Terminé'|trans }}</button>
+                        <button class="btn btn-success btn-sm">{{ 'Commande effectuer'|trans }}</button>
                     {% else %}
                         <button class="btn btn-danger btn-sm">{{ 'En cours'|trans }}</button>
                     {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('commande_toggle', {'id': commande.id | nzo_encrypt}) }}" class="btn btn-primary btn-info mx-2">
+                        <i class="fas fa-fw fa-toggle-{{ commande.etatcommande ? 'on' : 'off' }}"></i>
+                    </a>
                 </td>
                 <td>
                    <div class="d-flex align-items-center">
@@ -94,6 +100,7 @@
                         <a href="{{ path('app_commande_pdf', {'id': commande.id| nzo_encrypt}) }} " class="d-none d-sm-inline-block btn btn-sm btn-secondary ">
                             <i class="fas fa-file-invoice"></i>
                         </a>
+                        <!-- Ajouter le bouton toggle -->
                     </div>
                 </td>
             </tr>

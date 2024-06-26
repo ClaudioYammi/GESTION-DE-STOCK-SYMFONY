@@ -323,4 +323,33 @@ class CommandeController extends AbstractController
 
         return $response;
     }
+
+    #[Route('/commande/toggle/{id}', name: 'commande_toggle')]
+    #[ParamDecryptor(['id'])]
+    public function toggleEtatCommande($id, CommandeRepository $commandeRepository, EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer la commande par son ID
+        $commande = $commandeRepository->find($id);
+        $user = $commandeRepository->findAll();
+        
+        if (!$commande) {
+            throw $this->createNotFoundException('Commande non trouvée');
+        }
+
+        // Inverser l'état de la commande
+        $commande->setEtatcommande(!$commande->isEtatcommande());
+
+        // Persister et flusher
+        if($entityManager->persist($commande) === True){
+            $this->addFlash('success','Commande N° '.$commande->getNumFacture()." effectuer" );
+
+        }else{
+            $this->addFlash('error','Commande N°'.$commande->getNumFacture()." Annuler" );
+        };
+        
+        $entityManager->flush();
+
+        // Rediriger ou retourner une réponse appropriée
+        return $this->redirectToRoute('app_commande_index');
+    }
 }
