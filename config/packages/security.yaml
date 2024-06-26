@@ -32,21 +32,21 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/home, roles: [ROLE_ADMIN, ROLE_USER, ROLE_EDIT, ROLE_STOCK] }
         - { path: ^/register, roles: ROLE_ADMIN }
-        - { path: ^/home, roles: ROLE_ADMIN, ROLE_USER, ROLE_EDIT, ROLE_STOCK }
-        - { path: ^/achat, roles: ROLE_ADMIN, ROLE_EDIT }
-        - { path: ^/categorie, roles: ROLE_ADMIN, ROLE_EDIT  }
-        - { path: ^/client, roles: ROLE_ADMIN, ROLE_EDIT }
+        - { path: ^/user, roles: ROLE_ADMIN }
+        - { path: ^/produit, roles: [ROLE_ADMIN, ROLE_USER, ROLE_EDIT, ROLE_STOCK]  }
+        - { path: ^/client, roles: [ROLE_ADMIN, ROLE_EDIT] }
+        - { path: ^/achat, roles:[ ROLE_ADMIN, ROLE_EDIT] }
+        - { path: ^/categorie, roles: [ROLE_ADMIN, ROLE_EDIT]  }
         - { path: ^/detail/achat, roles: ROLE_ADMIN }
         - { path: ^/detail/commande, roles: ROLE_ADMIN }
         - { path: ^/detail/vente, roles: ROLE_ADMIN }
-        - { path: ^/emplacement, roles: ROLE_ADMIN, ROLE_EDIT, ROLE_STOCK }
-        - { path: ^/fournisseur, roles: ROLE_ADMIN, ROLE_EDIT, ROLE_STOCK }
-        - { path: ^/inventaire, roles: ROLE_ADMIN, ROLE_STOCK }
-        - { path: ^/produit, roles: ROLE_ADMIN, ROLE_USER, ROLE_EDIT, ROLE_STOCK  }
-        - { path: ^/user, roles: ROLE_ADMIN }
-        - { path: ^/vente, roles: ROLE_ADMIN, ROLE_EDIT }
-        - { path: ^/ville, roles: ROLE_ADMIN, ROLE_EDIT }
+        - { path: ^/emplacement, roles: [ROLE_ADMIN, ROLE_EDIT, ROLE_STOCK] }
+        - { path: ^/fournisseur, roles: [ROLE_ADMIN, ROLE_EDIT, ROLE_STOCK] }
+        - { path: ^/inventaire, roles: [ROLE_ADMIN, ROLE_STOCK] }
+        - { path: ^/vente, roles: [ROLE_ADMIN, ROLE_EDIT] }
+        - { path: ^/ville, roles: [ROLE_ADMIN, ROLE_EDIT] }
 
 when@test:
     security:
