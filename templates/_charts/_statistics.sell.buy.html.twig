@@ -1,0 +1,15 @@
+<div class="text-xs font-weight-bold text-secondary text-uppercase m-2">
+                        Statistique Achat & Vente</div>
+    <div class="card-body">
+
+    <canvas id="monthlyStatisticsChart" width="400" height="200"></canvas>
+
+    <select id="yearSelector" class="form-select form-select-sm mt-2">
+        {% for year in 2021..2060 %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <script src="{{ asset('js/chart.statistics.js') }}"></script>
+    
+    </div>
+</div> 
