@@ -23,6 +23,11 @@ Migrate database
 symfony console make:migration
 symfony console doctrine:migrations:migrate
 ```
+Add Account administrator (ratovondriakakygo@gmail.com) (password: administrateur2024)
+```
+composer require --dev doctrine/doctrine-fixtures-bundle
+symfony console doctrine:fixtures:load
+```
 
 To Run Server
 ```
@@ -34,11 +39,6 @@ To Stop Server
 symfony server:stop
 ```
 
-Add Account administrator (ratovondriakakygo@gmail.com) (password: administrateur2024)
-```
-composer require --dev doctrine/doctrine-fixtures-bundle
-symfony console doctrine:fixtures:load
-```
 
 
 
