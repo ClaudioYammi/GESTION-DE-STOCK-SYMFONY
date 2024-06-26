@@ -4,52 +4,37 @@
 
 {% block table %}
 
-{{ form_errors(registrationForm) }}
 
 {{ form_start(registrationForm) }}
-<div class="row m-4">
-    <div class="row">
-        <div class="col">
+<div class="container-fluid">
+    <div class="row m-4">
+        <div class="col-md-6">
             {{ form_row(registrationForm.email) }}
         </div>
-        <div class="col">
+        <div class="col-md-6">
             {{ form_row(registrationForm.pseudo) }}
         </div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class="row m-4">
+        <div class="col-md-6">
             {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+                label: 'Password'
+            }) }}
         </div>
-        <div class="col">
+        <div class="col-md-3">
             {{ form_row(registrationForm.roles) }}
         </div>
-        <div class="col">
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="col-md-3">
+            {{ form_row(registrationForm.agreeTerms) }}
         </div>
     </div>
-    <input type="password" class="form-control" id="password-input" autocomplete="off"
-                               aria-autocomplete="list"
-                               aria-label="Password" aria-describedby="passwordHelp">
-                        <div class="password-meter">
-                            <div class="meter-section rounded me-2"></div>
-                            <div class="meter-section rounded me-2"></div>
-                            <div class="meter-section rounded me-2"></div>
-                            <div class="meter-section rounded"></div>
-                        </div>
-                        <div id="passwordHelp" class="form-text text-muted">Use 8 or more characters with a mix of
-                            letters, numbers &
-                            symbols.
-                        </div>
-    <div class="row">
+    <div class="row m-4">
         <div class="col">
             <button type="submit" class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
         </div>
     </div>
 </div>
 {{ form_end(registrationForm) }}
-
 
 {% endblock %}
 
