@@ -22,6 +22,7 @@ class UserType extends AbstractType
                     'User' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN',
                     'Editor' => 'ROLE_EDIT',
+                    'Responsable Stock' => 'ROLE_STOCK',
                 ],
                 'multiple' => false,
                 'expanded' => true,

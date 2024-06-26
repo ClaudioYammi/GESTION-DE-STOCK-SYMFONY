@@ -43,6 +43,7 @@ class RegistrationController extends AbstractController
 
             $user->setCreatedAt(new \DateTime());
             $entityManager->persist($user);
+            $this->addFlash('success', 'Utilisateur '. $user->getPseudo().' créer avec succès');
             $entityManager->flush();
 
             // generate a signed url and email it to the user
@@ -55,7 +56,7 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_user_index');
         }
 
         return $this->render('registration/register.html.twig', [

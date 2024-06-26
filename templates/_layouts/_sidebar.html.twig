@@ -23,7 +23,15 @@
                     <span class="visually-hidden">unread messages</span>
                     </button>
                 {% elseif is_granted('ROLE_EDIT') %}
-                    <button class="btn btn-sm btn-warning position-relative"><strong>Editeur</strong>
+                    <button class="btn btn-sm btn-warning position-relative"><strong>Caisse</strong>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill r">
+                        <div class="spinner-grow text-success spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span class="visually-hidden">unread messages</span>
+                    </button>
+                {% elseif is_granted('ROLE_STOCK') %}
+                    <button class="btn btn-sm btn-warning position-relative"><strong>Stock</strong>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill r">
                         <div class="spinner-grow text-success spinner-grow-sm" role="status">
                         <span class="visually-hidden">Loading...</span>
@@ -67,19 +75,22 @@
         </li>
     {% endif %}
     <hr class="sidebar-divider">
-<li class="nav-item {% if app.request.attributes.get('_route') in ['app_produit_index', 'app_produit_new'] %}active{% endif %}">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProd" aria-expanded="true" aria-controls="collapseProd">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Produits et Stocks</span>
-    </a>
-    <div id="collapseProd" class="collapse {% if app.request.attributes.get('_route') in ['app_produit_index', 'app_produit_new'] %}show{% endif %}" aria-labelledby="headingProd" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_produit_index' %}active{% endif %}" href="{{ path('app_produit_index') }}">Liste des Produits</a>
-            <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_produit_new' %}active{% endif %}" href="{{ path('app_produit_new') }}">Ajouter un Produit</a>
-        </div>
-    </div>
-</li>
-    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+        <li class="nav-item {% if app.request.attributes.get('_route') in ['app_produit_index', 'app_produit_new'] %}active{% endif %}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProd" aria-expanded="true" aria-controls="collapseProd">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Produits et Stocks</span>
+            </a>
+            <div id="collapseProd" class="collapse {% if app.request.attributes.get('_route') in ['app_produit_index', 'app_produit_new'] %}show{% endif %}" aria-labelledby="headingProd" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_produit_index' %}active{% endif %}" href="{{ path('app_produit_index') }}">Liste des Produits</a>
+                    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+                        <a class="collapse-item {% if app.request.attributes.get('_route') == 'app_produit_new' %}active{% endif %}" href="{{ path('app_produit_new') }}">Ajouter un Produit</a>
+                    {% endif %} 
+                </div>
+            </div>
+        </li>
+            
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDIT') %}
         <li class="nav-item {% if app.request.attributes.get('_route') in ['app_achat_index', 'app_achat_new'] %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
@@ -104,9 +115,9 @@
                 </div>
             </div>
         </li>
-    {% endif %}
+        {% endif %}
 
-    {% if is_granted('ROLE_ADMIN','ROLE_STOCK') %}
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_STOCK')%}
         <li class="nav-item {% if app.request.attributes.get('_route') in ['app_inventaire_index', 'app_inventaire_new'] %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventaires" aria-expanded="true" aria-controls="collapseInventaires">
                 <i class="fas fa-clipboard-list"></i>
@@ -119,7 +130,8 @@
                 </div>
             </div>
         </li>
-    {% endif %}
+        {% endif %}
+   
 
     
         <li class="nav-item {% if app.request.attributes.get('_route') in ['app_client_index', 'app_client_new'] %}active{% endif %}">
@@ -134,9 +146,8 @@
                 </div>
             </div>
         </li>
-    
 
-    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDIT') %}
         <li class="nav-item {% if app.request.attributes.get('_route') in ['app_commande_index', 'app_commande_new'] %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommandes" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-shipping-fast"></i>
@@ -150,9 +161,7 @@
                 </div>
             </div>
         </li>
-    {% endif %}
-
-    {% if is_granted('ROLE_ADMIN','ROLE_EDIT') %}
+    
         <li class="nav-item {% if app.request.attributes.get('_route') in ['app_ville_index', 'app_emplacement_index', 'app_categorie_index'] %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVilles" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-plus icon-plus"></i>
@@ -166,6 +175,6 @@
                 </div>
             </div>
         </li>
-    {% endif %}
+        {% endif %}
 
 </ul>
