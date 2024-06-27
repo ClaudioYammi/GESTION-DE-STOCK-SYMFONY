@@ -67,14 +67,8 @@
                         </a>
                     </th>
                     <th scope="col">
-                        <a href="{{ path('app_produit_index', {'sort': 'prixunitaire', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
-                            Prix unitaire
-                            <i class="fas fa-sort"></i>
-                        </a>
-                    </th>
-                    <th scope="col">
                         <a href="{{ path('app_produit_index', {'sort': 'prixunitairevente', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
-                            Prix en Vente
+                            Prix Unitaire
                             <i class="fas fa-sort"></i>
                         </a>
                     </th>
@@ -122,11 +116,6 @@
                 <td>{{ produit.designation }}</td>
                 <td>{{ produit.emplacement.nom }}</td>
                 <td>{{ produit.idCategorie.nom }}</td>
-                <td>
-                    <button class="btn btn-outline-secondary btn-sm">
-                        {{ produit.prixunitaire }} Ariary
-                    </button>
-                </td>
                 <td>
                     <button class="btn btn-outline-secondary btn-sm">
                         {{ produit.prixunitairevente }} Ariary

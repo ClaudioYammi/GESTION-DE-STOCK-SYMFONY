@@ -37,7 +37,7 @@ security:
         - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/produit, roles: [ROLE_ADMIN, ROLE_USER, ROLE_EDIT, ROLE_STOCK]  }
         - { path: ^/client, roles: [ROLE_ADMIN, ROLE_EDIT] }
-        - { path: ^/achat, roles:[ ROLE_ADMIN, ROLE_EDIT] }
+        - { path: ^/achat, roles: [ROLE_ADMIN, ROLE_EDIT] }
         - { path: ^/categorie, roles: [ROLE_ADMIN, ROLE_EDIT]  }
         - { path: ^/detail/achat, roles: ROLE_ADMIN }
         - { path: ^/detail/commande, roles: ROLE_ADMIN }
