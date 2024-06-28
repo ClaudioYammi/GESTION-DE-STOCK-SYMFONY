@@ -26,6 +26,7 @@ class EmplacementController extends AbstractController
                 PaginatorInterface $paginator
                 , EntityManagerInterface $entityManager): Response
             {
+                
             #modal---------------------------------------------------------------------
             $emplacement = new Emplacement();
             $form = $this->createForm(EmplacementType::class, $emplacement);

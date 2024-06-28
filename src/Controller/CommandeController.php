@@ -324,7 +324,7 @@ class CommandeController extends AbstractController
         return $response;
     }
 
-    #[Route('/commande/toggle/{id}', name: 'commande_toggle')]
+    #[Route('/toggle/{id}', name: 'commande_toggle')]
     #[ParamDecryptor(['id'])]
     public function toggleEtatCommande($id, CommandeRepository $commandeRepository, EntityManagerInterface $entityManager): Response
     {
@@ -340,9 +340,10 @@ class CommandeController extends AbstractController
         $commande->setEtatcommande(!$commande->isEtatcommande());
 
         // Persister et flusher
-        if($entityManager->persist($commande) === True){
-            $this->addFlash('success','Commande N° '.$commande->getNumFacture()." effectuer" );
+        $entityManager->persist($commande);
 
+        if($commande->isEtatcommande() === True){
+            $this->addFlash('success','Commande N° '.$commande->getNumFacture()." effectuer" );
         }else{
             $this->addFlash('error','Commande N°'.$commande->getNumFacture()." Annuler" );
         };
