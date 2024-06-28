@@ -129,6 +129,7 @@
     <table>
         <thead>
             <tr>
+                <th>Reference</th>
                 <th>Produit</th>
                 <th>Quantité</th>
                 <th>Prix unitaire</th>
@@ -138,6 +139,7 @@
         <tbody>
             {% for detail in vente.detailVentes %}
             <tr>
+                <td>{{ detail.reference.referenceproduit }}</td>
                 <td>{{ detail.reference.designation }}</td>
                 <td>{{ detail.quantite }}</td>
                 <td>{{ detail.prixunitairevente|number_format(2, ',', ' ') }} Ar</td>

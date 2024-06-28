@@ -2,8 +2,10 @@
 namespace App\Controller;
 
 use App\Entity\DetailAchat;
+use App\Entity\Client;
 use App\Entity\Produit;
 use App\Entity\DetailVente;
+use App\Entity\Fournisseur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +17,8 @@ use App\Repository\VenteRepository;
 use App\Repository\DetailAchatRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
+use App\Repository\ClientRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,9 +29,12 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(
         AchatRepository $achatRepository, 
+        UserRepository $userRepository,
+        VenteRepository $venteRepository,
+        FournisseurRepository $fournisseurRepository,
         CategorieRepository $categoryRepository, 
         ProduitRepository $produitRepository, 
-        VenteRepository $venteRepository,
+        ClientRepository $clientRepository,
         EntityManagerInterface $entityManager,
     ): Response
 
@@ -44,6 +51,9 @@ class HomeController extends AbstractController
         $categorieCount = $categoryRepository->count([]);
         $ProduitCount = $produitRepository->count([]);
         $produits = $produitRepository->findAll();
+        $clientCount = $clientRepository->count([]);
+        $fournisseurCount = $fournisseurRepository->count([]);
+        $userCount = $userRepository->count([]);
         
         // Check for low stock products
         foreach ($produits as $product) {
@@ -55,8 +65,11 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'achats'         => $achatCount,
+            'clients'        => $clientCount,
+            'users'        => $userCount,
+            'fournisseurs'   => $fournisseurCount,
             'ventes'         => $venteCount,
-            'categories'      => $categorieCount,
+            'categories'     => $categorieCount,
             'produits'       => $ProduitCount,
             'totalDesAchats' => $totalDesAchats,
             'totalDesVentes' => $totalDesVentes,

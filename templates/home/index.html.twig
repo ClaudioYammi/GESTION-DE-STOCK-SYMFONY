@@ -7,8 +7,6 @@
    
 {% endblock %}
 {% block body %}
-
-
   <!-- Content Rodcdcdcdw -->
         <div class="row">
             <!-- Earnings (Monthly) Card Example -->
@@ -118,7 +116,11 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Nombre client</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    6
+                                    {% if clients > 0 %}
+                                      {{ clients }}
+                                    {% else %}
+                                       <p> Aucun client </p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -138,7 +140,11 @@
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Nombre Fournisseur</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    3
+                                    {% if fournisseurs > 0 %}
+                                        {{ fournisseurs }}
+                                    {% else %}
+                                        <p> Aucun fournisseurs</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -160,7 +166,11 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                            5
+                                            {% if users > 0  %}
+                                                {{users}}
+                                            {% else %}
+                                                <p> Aucun utilisateur </p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

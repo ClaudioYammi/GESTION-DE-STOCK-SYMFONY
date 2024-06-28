@@ -22,6 +22,7 @@
         <table class="table table-hover cursor-pointer">
             <thead class="table-dark">
                 <tr>
+                    <th>Reference</th>
                     <th>Produit</th>
                     <th>Quantité</th>
                     <th>Prix unitaire</th>
@@ -30,7 +31,8 @@
             </thead>
             <tbody>
                 {% for detail in vente.detailventes %}
-                <tr>
+                <tr>                    
+                    <td>{{ detail.reference.referenceproduit }}</td>
                     <td>{{ detail.reference.designation }}</td>
                     <td>{{ detail.quantite }}</td>
                     <td>{{ detail.prixunitairevente|number_format(2, ',', ' ') }} Ar</td>
