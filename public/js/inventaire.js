@@ -29,10 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <label for="stockinventaire">Stock inventaire</label>
                 <input type="number" class="form-control" name="stockinventaire[]" required>
             </div>
-            <div class="col-md-2">
-                <label for="stockutiliser">Stock utilisé</label>
-                <input type="number" class="form-control" name="stockutiliser[]" required>
-            </div>
         `;
         formRows.appendChild(newRow);
     });

@@ -72,6 +72,12 @@
                 </th>
                 <th>
                     <a href="{{ path('app_inventaire_index', {'sort': 'reference', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
+                        Reference
+                    <i class="fas fa-sort"></i>
+                    </a> 
+                </th>
+                <th>
+                    <a href="{{ path('app_inventaire_index', {'sort': 'reference', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
                         Produit
                     <i class="fas fa-sort"></i>
                     </a> 
@@ -101,6 +107,7 @@
                         {{ inventaire.updateAt ? inventaire.updateAt|date('H:i:s') : '' }}
                     </small>
                 </td>
+                <td>{{ inventaire.reference.referenceproduit }}</td> 
                 <td>{{ inventaire.reference.designation }}</td> 
                 <td><strong>{{ inventaire.reference.quantite }}</strong></td>
                 <td>{{ inventaire.stockinventaire }}</td>  

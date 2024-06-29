@@ -86,9 +86,10 @@ class Inventaire
         if ($this->reference === null) {
             return null;
         }
-
-        $quantiteProduit = $this->reference->quantite();
-        $ecart = $quantiteProduit - $this->stockinventaire;
+    
+        $quantiteProduit = $this->reference->quantite(); // Utilisation d'une méthode getter pour obtenir la quantité
+        $ecart = $this->stockinventaire - $quantiteProduit; // Utilisation de la fonction abs pour obtenir la valeur absolue
         return (string) $ecart;
     }
+    
 }

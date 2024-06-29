@@ -122,7 +122,7 @@ class InventaireController extends AbstractController
                 }
 
                 // Vérification que les stocks ne sont pas négatifs
-                if ($stocksInventaire[$i] < 0 || $stocksUtiliser[$i] < 0) {
+                if ($stocksInventaire[$i] < 0 ) {
                     $this->addFlash('alert_new_achat', 'Les stocks ne peuvent pas être négatifs.');
                     return $this->render('inventaire/nouveau.html.twig', [
                         'produits' => $produits,
@@ -139,8 +139,8 @@ class InventaireController extends AbstractController
                 $inventaire
                     ->setUpdateAt($updateAt)
                     ->setNote($notes[$i])
-                    ->setStockinventaire($stocksInventaire[$i])
-                    ->setStockutiliser($stocksUtiliser[$i]);
+                    ->setStockinventaire($stocksInventaire[$i]);
+
 
                 // Récupération du produit de référence à partir de l'ID envoyé dans le formulaire
                 $reference = $entityManager->getRepository(Produit::class)->find($references[$i]);
