@@ -15,12 +15,16 @@
                 <td>{{ inventaire.note }}</td>
             </tr>
             <tr class="table-success">
-                <th>Stockinventaire</th>
+                <th>Stock inventaire</th>
                 <td>{{ inventaire.stockinventaire }}</td>
             </tr>
+            <tr class="table-success">
+                <th>Stock actuel</th>
+                <td>{{ inventaire.reference.quantite() }}</td>
+            </tr>
             <tr class="table">
-                <th>Stockutiliser</th>
-                <td>{{ inventaire.stockutiliser }}</td>
+                <th>Ecart</th>
+                <td>{{ inventaire.calculerEcart() }}</td>
             </tr>
         </tbody>
     </table>

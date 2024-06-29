@@ -88,7 +88,7 @@ class Inventaire
         }
     
         $quantiteProduit = $this->reference->quantite(); // Utilisation d'une méthode getter pour obtenir la quantité
-        $ecart = $this->stockinventaire - $quantiteProduit; // Utilisation de la fonction abs pour obtenir la valeur absolue
+        $ecart = $this->stockinventaire - $quantiteProduit; 
         return (string) $ecart;
     }
     
