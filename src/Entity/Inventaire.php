@@ -28,9 +28,6 @@ class Inventaire
     #[ORM\JoinColumn(nullable: false)]
     private ?Produit $reference = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
-    private ?string $stockutiliser = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -84,18 +81,6 @@ class Inventaire
         return $this;
     }
 
-    public function getStockutiliser(): ?string
-    {
-        return $this->stockutiliser;
-    }
-
-    public function setStockutiliser(string $stockutiliser): static
-    {
-        $this->stockutiliser = $stockutiliser;
-
-        return $this;
-    }
-
     public function calculerEcart(): ?string
     {
         if ($this->reference === null) {
@@ -103,7 +88,7 @@ class Inventaire
         }
 
         $quantiteProduit = $this->reference->quantite();
-        $ecart = $quantiteProduit - ($this->stockinventaire + $this->stockutiliser);
+        $ecart = $quantiteProduit - $this->stockinventaire;
         return (string) $ecart;
     }
 }

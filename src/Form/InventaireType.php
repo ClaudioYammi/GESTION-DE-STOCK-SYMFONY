@@ -19,7 +19,6 @@ class InventaireType extends AbstractType
             ])
             ->add('note')
             ->add('stockinventaire')
-            ->add('stockutiliser')
             ->add('reference', EntityType::class, [
                 'class' => Produit::class,
                 'choice_label' => 'id',

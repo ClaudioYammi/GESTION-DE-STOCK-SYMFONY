@@ -76,21 +76,15 @@
                     <i class="fas fa-sort"></i>
                     </a> 
                 </th>
-                {# <th> #}
-                    {# <a href="{{ path('app_achat_index', {'sort': 'updateAt', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}"> #}
-                         {# Stock actuel #}
-                    {# <i class="fas fa-sort"></i> #}
-                    {# </a>  #}
-                {# </th> #}
                 <th>
-                    <a href="{{ path('app_inventaire_index', {'sort': 'stockinventaire', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
-                        Stockinventaire
+                    <a href="{{ path('app_achat_index', {'sort': 'updateAt', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
+                         Stock actuel
                     <i class="fas fa-sort"></i>
                     </a> 
                 </th>
                 <th>
-                    <a href="{{ path('app_inventaire_index', {'sort': 'stockutiliser', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
-                        Produit en utilisation
+                    <a href="{{ path('app_inventaire_index', {'sort': 'stockinventaire', 'order': (order == 'asc' ? 'desc' : 'asc')}) }}">
+                        Stockinventaire
                     <i class="fas fa-sort"></i>
                     </a> 
                 </th>
@@ -107,10 +101,9 @@
                         {{ inventaire.updateAt ? inventaire.updateAt|date('H:i:s') : '' }}
                     </small>
                 </td>
-                <td>{{ inventaire.reference.designation }}</td>
-                {# <td>{{ inventaire.reference.quantite }}</td> #}
-                <td>{{ inventaire.stockinventaire }}</td>
-                <td>{{ inventaire.stockutiliser }}</td>
+                <td>{{ inventaire.reference.designation }}</td> 
+                <td><strong>{{ inventaire.reference.quantite }}</strong></td>
+                <td>{{ inventaire.stockinventaire }}</td>  
                 <td class="{% if inventaire.calculerEcart() < 0 %} 
                                 bg-danger text-white
                             {% elseif inventaire.calculerEcart() > 0 %}
