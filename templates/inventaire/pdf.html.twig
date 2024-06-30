@@ -60,10 +60,10 @@
             <tr>
                 <th>Date d'inventaire</th>
                 <th>Date d'inventaire</th>
-                <th>Note</th>
+                <th>Stock actuel</th>
                 <th>Stock inventaire</th>
-                <th>Stock utiliser</th>
                 <th>ecart</th>
+                <th>Note</th>
             </tr>
         </thead>
         <tbody>
@@ -71,10 +71,10 @@
                 <tr>
                     <td>{{ inventaire.updateAt ? inventaire.updateAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ inventaire.reference.designation }}</td>
-                    <td>{{ inventaire.note }}</td>
+                    <td>{{ inventaire.reference.quantite() }} </td>
                     <td>{{ inventaire.stockinventaire }} </td>
-                    <td>{{ inventaire.stockutiliser }} </td>
                     <td>{{ inventaire.calculerEcart() }} </td>
+                    <td>{{ inventaire.note }}</td>
                 </tr>
             {% endfor %}
         </tbody>
