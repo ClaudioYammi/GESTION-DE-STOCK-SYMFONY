@@ -19,6 +19,7 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private const MAX_USERS = 100;
 
     public function __construct(EmailVerifier $emailVerifier)
     {
@@ -26,8 +27,14 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        $userCount = $userRepository->countUsers();
+        if ($userCount >= self::MAX_USERS) {
+            $this->addFlash('delete', 'Le nombre maximal d’utilisateurs a été atteint.');
+            return $this->redirectToRoute('app_home');
+        }
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
