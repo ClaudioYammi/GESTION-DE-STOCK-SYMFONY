@@ -27,7 +27,7 @@ class ExpiringProductListener extends AbstractController
 
         if (!empty($produits)) {
             // Préparer le message flash
-            $message = count($produits) > 1 ? 'Certains produits vont bientôt expirer.' : 'Un produit va bientôt expirer.'.  $produits[0]->getDesignation();
+            $message = count($produits) > 1 ? 'Certains produits vont bientôt expirer : ' : 'Un produit va bientôt expirer : '.  $produits[0]->getDesignation();
             $this->addFlash('stock_exp', $message);
 
             return;

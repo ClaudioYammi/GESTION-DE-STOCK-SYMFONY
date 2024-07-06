@@ -51,7 +51,7 @@ class InventaireController extends AbstractController
         $orderBy = null; // Initialize empty order by
 
         // Get search parameters from request query (if any)
-        $allowedAttributes = [ 'update_at', 'reference', 'stockinventaire', 'stockutiliser' ]; // Define allowed attributes
+        $allowedAttributes = [ 'update_at', 'reference', 'stockinventaire']; // Define allowed attributes
         foreach ($allowedAttributes as $attribute) {
             if ($request->query->has($attribute)) {
                 $searchCriteria[$attribute] = $request->query->get($attribute);

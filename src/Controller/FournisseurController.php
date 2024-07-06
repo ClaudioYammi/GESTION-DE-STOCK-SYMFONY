@@ -60,6 +60,8 @@ class FournisseurController extends AbstractController
 
     #[Route('/{id}', name: 'app_fournisseur_show', methods: ['GET'])]
     #[ParamDecryptor(['id'])]
+
+    
     public function show(Fournisseur $fournisseur): Response
     {
         return $this->render('fournisseur/show.html.twig', [
