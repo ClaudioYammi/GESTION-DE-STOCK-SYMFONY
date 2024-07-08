@@ -70,6 +70,13 @@ class InventaireController extends AbstractController
         if ($startDate && $endDate) {
             $startDate = new \DateTime($startDate);
             $endDate = new \DateTime($endDate);
+
+            // Vérifier si la date de début est supérieure à la date de fin
+            if ($startDate > $endDate) {
+                $this->addFlash('error_image', 'La date de début ne peut pas être supérieure à la date de fin.');
+                return $this->redirectToRoute('app_inventaire_index');
+            }
+
             $inventaires = $inventaireRepository->findBetweenDates($startDate, $endDate);
         } else {
             $inventaires = $inventaireRepository->findByCriteriaAllowed($searchCriteria, $orderBy);
