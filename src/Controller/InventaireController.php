@@ -67,7 +67,12 @@ class InventaireController extends AbstractController
         $startDate = $request->query->get('start_date');
         $endDate = $request->query->get('end_date');
 
-        if ($startDate && $endDate) {
+        if ($startDate || $endDate) {
+            if (!$startDate || !$endDate) {
+                $this->addFlash('error_image', 'Les deux dates doivent être sélectionnées.');
+                return $this->redirectToRoute('app_inventaire_index');
+            }
+
             $startDate = new \DateTime($startDate);
             $endDate = new \DateTime($endDate);
 
