@@ -59,6 +59,7 @@
         <thead>
             <tr>
                 <th>Produit</th>
+                <th>Reference</th>
                 <th>Prix unitaire</th>
                 <th>Description</th>
                 <th>Date d'expiration</th>
@@ -70,6 +71,7 @@
             {% for produit in produits %}
                 <tr>
                     <td>{{ produit.designation }}</td>
+                    <td>{{ produit.Referenceproduit }}</td>
                     <td>{{ produit.prixunitaire|number_format(2, ',', ' ') }} Ariary</td>
                     <td>{{ produit.description }}</td>
                     <td>{{ produit.dateexp|date('Y-m-d H:i:s') }}</td>
